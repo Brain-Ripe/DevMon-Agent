@@ -28,7 +28,7 @@ func collectMetrics() Metrics {
     netStats, _ := net.IOCounters(false)
 
     return Metrics{
-        DeviceIdentifier: "dev002",
+        DeviceIdentifier: "dev003Rpi",
         CpuUsage:         cpuPercent[0],
         RamUsage:         memStat.UsedPercent,
         GpuUsage:         0,
@@ -43,7 +43,7 @@ func sendMetrics(metrics Metrics) {
     jsonData, _ := json.Marshal(metrics)
 
     http.Post(
-        "http://localhost:8080/metrics",
+        "http://192.168.0.104:8080/metrics",
         "application/json",
         bytes.NewBuffer(jsonData),
     )
